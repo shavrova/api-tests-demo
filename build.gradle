@@ -1,56 +1,3 @@
-//plugins {
-//    id 'java'
-//}
-//
-//group 'com.parallel.test'
-//version '1.0-SNAPSHOT'
-//
-//sourceCompatibility = 1.8
-//
-//repositories {
-//    mavenCentral()
-//}
-//
-//
-//test {
-//    useJUnitPlatform()
-//    systemProperties System.getProperties()
-//    ignoreFailures Boolean.getBoolean("test.ignoreFailures")
-//    testLogging.showStandardStreams = true
-//    maxParallelForks = 4//Runtime.runtime.availableProcessors()
-////    if (findProperty('parallel')) {
-////        if (Boolean.parseBoolean(this.properties['parallel'])) {
-////            println "##############Test will be run in parallel##############"
-////            maxParallelForks = Runtime.runtime.availableProcessors()
-////        }
-////    }
-//    testLogging {
-//        events 'PASSED', 'FAILED', 'SKIPPED'
-//    }
-//}
-//
-//dependencies {
-//    //testCompile group: 'junit', name: 'junit', version: '4.12'
-//    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
-//    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
-//}
-//
-//
-//
-
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-//no need in buildscript if using new standard for declaring plugins
-// buildscript {
-//    repositories {
-//        jcenter()
-//    }
-//    dependencies {
-//        classpath "io.qameta.allure:allure-gradle:2.5"
-//    }
-//}
-
-//new way of declaring and applying plugins, no need in buildscript
 plugins {
     id 'java'
     id 'io.qameta.allure' version '2.5'
@@ -67,22 +14,10 @@ repositories {
 }
 
 dependencies {
-
-
-    implementation('io.qameta.allure:allure-okhttp3:2.8.1')
-
+    
     testImplementation('org.junit.jupiter:junit-jupiter-api:5.3.2')
     testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine:5.3.2')
     testRuntimeOnly('io.qameta.allure:allure-junit5:2.8.1')
-
-//    testRuntimeOnly('org.slf4j:slf4j-simple:1.7.25')
-
-
-    implementation 'io.cucumber:cucumber-java:4.3.1'
-    implementation 'io.cucumber:cucumber-junit:4.3.1'
-
-
-
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
@@ -91,7 +26,6 @@ dependencies {
 
     compile group: 'io.rest-assured', name: 'rest-assured', version: '4.0.0'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter', version: '2.1.6.RELEASE'
-    //exclude module: "spring-boot-starter-tomcat"
     compile group: 'org.json', name: 'json', version: '20180813'
     
     compile group: 'io.qameta.allure', name: 'allure-rest-assured', version: '2.12.1'
@@ -101,44 +35,17 @@ dependencies {
     annotationProcessor "org.projectlombok:lombok:1.18.2"
     testAnnotationProcessor "org.projectlombok:lombok:1.18.2"
 
-
-    //compile group: 'org.aspectj', name: 'aspectjrt', version: '1.9.4'
-
-//    testCompile 'org.springframework.boot:spring-boot-starter-aop:1.2.7.RELEASE'
-//    testCompile 'org.springframework:spring-aspects:4.1.8.RELEASE'
-
-   // compile group: 'org.springframework', name: 'spring-aop', version: '5.1.9.RELEASE'
-
-
 }
 
-
-//allure {
-//    autoconfigure = true
-//    version = '2.8.1'
-//}
 
 allure {
     version = '2.7.0'
     autoconfigure = true
     aspectjweaver = true
-//    allureJavaVersion = '2.4.1'
     clean = true
-//    resultsDir = new File(project.getBuildDir(), "allure-results")
-//    useJUnit4 {
-//        version = '2.7.0'
-//    }
-
-
-
-
 }
 
 test {
-//    junit4
-//    useJUnit()
-
-//    junit5
     useJUnitPlatform{
         includeTags 'API'
     }
@@ -153,58 +60,12 @@ test {
 
 
     maxParallelForks = Runtime.runtime.availableProcessors().intdiv(5) ?: 1
-
-//    systemProperties['junit.jupiter.execution.parallel.enabled'] = false
-//    systemProperties['junit.jupiter.execution.parallel.config.strategy'] = "fixed"
-//    systemProperties['junit.jupiter.execution.parallel.config.fixed.parallelism'] = 3
-
+    
     systemProperties = [
             'junit.jupiter.execution.parallel.enabled': true,
             'junit.jupiter.execution.parallel.config.strategy': 'fixed',
             'junit.jupiter.execution.parallel.config.fixed.parallelism': 3
     ]
-
-// Setting system properties
-//   systemProperty 'junit.jupiter.conditions.deactivate', '*'
-//    systemProperties = [
-//            'junit.jupiter.extensions.autodetection.enabled': 'true',
-//            'junit.jupiter.testinstance.lifecycle.default': 'per_class'
-//    ]
-
+    
     forkEvery = 1
 }
-
-//if (project.hasProperty('env')) {
-//    String environment = project.getProperty('env')
-//    def supportedEnvironments = ["acceptance", "dev"]
-//    if (!(environment in supportedEnvironments)) {
-//        throw new GradleException("You have defined an invalid environment '${environment}' - should be one of ${supportedEnvironments}")
-//    }
-//    println "Target environment: ${environment}"
-//    switch (environment) {
-//        case "acceptance":
-//            test {
-//                include("**/*AcceptanceTest.class")
-//            }
-//            break
-//        default:
-//            test {
-//                include("**/*Test.class")
-//            }
-//            break
-//    }
-//} else {
-//    test {
-//        include("**/*Test.class")
-//    }
-//}
-
-
-///RUN:
-// gradlew clean test
-
-//GENERATE REPORTS:
-//allureReport
-
-//OPEN REPORTS:
-//allure serve

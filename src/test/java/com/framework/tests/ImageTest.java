@@ -2,13 +2,13 @@ package com.framework.tests;
 
 import com.framework.core.entity.ImageDto;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static com.framework.tests.TestInit.imageService;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 @DisplayName("Verify image is uploaded")
@@ -32,7 +32,7 @@ public class ImageTest {
         Assertions.assertDoesNotThrow(() -> {
             ImageDto uploadedImageDto = imageService.uploadImage();
             ImageDto retrievedImageDto = imageService.getImage(uploadedImageDto.getId());
-            Assert.assertEquals("Image hash is not equal", uploadedImageDto.getId(), retrievedImageDto.getId());
+            assertEquals(uploadedImageDto.getId(), retrievedImageDto.getId(), "Image hash is not equal");
         });
     }
 
