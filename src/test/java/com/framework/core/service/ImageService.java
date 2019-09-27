@@ -2,13 +2,15 @@ package com.framework.core.service;
 
 import com.framework.core.entity.ImageDto;
 
-import java.io.IOException;
-
 public interface ImageService {
 
-    ImageDto getImage(String hash) throws IOException;
+    ImageDto get(String hash);
 
-    ImageDto uploadImage() throws IOException;
+    ImageDto postVideo(String extension);
 
+    ImageDto post();
 
+    ImageDto post(String image);
+
+    ImageDto post(byte [] bytes);
 }

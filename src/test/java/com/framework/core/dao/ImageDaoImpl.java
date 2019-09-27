@@ -1,14 +1,12 @@
 package com.framework.core.dao;
 
 import com.framework.core.entity.ImageDto;
+import com.framework.core.utils.RequestBuilder;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.validator.routines.UrlValidator;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
-
 import static com.framework.core.utils.MappingUtils.convertResponseToObject;
-import static com.framework.core.utils.RestUtils.sendGetTo;
-import static com.framework.core.utils.RestUtils.sendPostTo;
 
 
 @Slf4j
@@ -17,14 +15,36 @@ public class ImageDaoImpl implements ImageDao {
 
 
     @Override
-    public ImageDto getImageViaRest(String hash) throws IOException{
-        return convertResponseToObject(ImageDto.class, sendGetTo("3/image/" + hash));
+    public ImageDto getImage(String hash){
+        return convertResponseToObject(ImageDto.class, RequestBuilder.sendGetTo("3/image/" + hash));
+    }
+
+
+    public ImageDto uploadVideo(String extension){
+        return convertResponseToObject(ImageDto.class, RequestBuilder.uploadVideo(extension));
+    }
+
+    @Override
+    public ImageDto uploadImage(){
+        return convertResponseToObject(ImageDto.class, RequestBuilder.uploadImage());
+    }
+
+    @Override
+    public ImageDto uploadImage(String image) {
+        String response;
+        UrlValidator urlValidator = new UrlValidator();
+        if(urlValidator.isValid(image)){
+            response =  RequestBuilder.uploadFromURL(image);
+        }
+        else {
+            response = RequestBuilder.uploadBase64(image);
+        }
+        return convertResponseToObject(ImageDto.class, response);
     }
 
 
     @Override
-    public ImageDto uploadRandomImageViaRest() throws IOException {
-        return convertResponseToObject(ImageDto.class, sendPostTo("3/upload"));
+    public ImageDto uploadImage(byte [] bytes){
+        return convertResponseToObject(ImageDto.class, RequestBuilder.uploadImage(bytes));
     }
-
 }

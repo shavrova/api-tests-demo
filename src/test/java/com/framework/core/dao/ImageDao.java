@@ -2,12 +2,16 @@ package com.framework.core.dao;
 
 import com.framework.core.entity.ImageDto;
 
-import java.io.IOException;
-
 public interface ImageDao {
 
-    ImageDto getImageViaRest(String hash) throws IOException;
+    ImageDto getImage(String hash);
 
-    ImageDto uploadRandomImageViaRest() throws IOException;
+    ImageDto uploadVideo(String extension);
+
+    ImageDto uploadImage();
+
+    ImageDto uploadImage(String image);
+
+    ImageDto uploadImage(byte [] bytes);
 
 }

@@ -6,8 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
-
 
 @Slf4j
 @Component("imageService")
@@ -17,20 +15,29 @@ public class ImageServiceImpl implements ImageService {
     ImageDao imageDao;
 
     @Override
-    public ImageDto getImage(String hash) throws IOException {
-        return imageDao.getImageViaRest(hash);
+    public ImageDto get(String hash) {
+        return imageDao.getImage(hash);
     }
-
 
     @Override
-    public ImageDto uploadImage() throws IOException{
-        return imageDao.uploadRandomImageViaRest();
+    public ImageDto postVideo(String extension){
+        return imageDao.uploadVideo(extension);
     }
 
+    @Override
+    public ImageDto post() {
+        return imageDao.uploadImage();
+    }
 
+    @Override
+    public ImageDto post(String image) {
+        return imageDao.uploadImage(image);
+    }
 
-
-
+    @Override
+    public ImageDto post(byte [] bytes ) {
+        return imageDao.uploadImage(bytes);
+    }
 
 
 }

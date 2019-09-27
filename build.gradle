@@ -29,6 +29,7 @@ dependencies {
     compile group: 'org.json', name: 'json', version: '20180813'
     
     compile group: 'io.qameta.allure', name: 'allure-rest-assured', version: '2.12.1'
+    compile group: 'commons-validator', name: 'commons-validator', version: '1.6'
 
     compileOnly "org.projectlombok:lombok:1.18.2"
     testCompileOnly "org.projectlombok:lombok:1.18.2"
@@ -69,3 +70,6 @@ test {
     
     forkEvery = 1
 }
+
+//run single test:
+//gradlew test --tests *ImageTest
