@@ -9,11 +9,9 @@ import java.io.IOException;
 public class MappingUtils {
 
     public static <T> T convertResponseToObject(final Class<T> clazz, final String response) {
-        try{
-            return new ObjectMapper()
-                    .readerFor(clazz)
-                    .readValue(response);
-        } catch (IOException ex){
+        try {
+            return new ObjectMapper().readValue(response, clazz);
+        } catch (IOException ex) {
             log.error(ex.getMessage());
             return null;
         }

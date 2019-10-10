@@ -4,13 +4,12 @@ import com.framework.core.entity.ImageDto;
 
 public interface ImageService {
 
-    ImageDto get(String hash);
+    ImageDto getImage(String hash);
 
-    ImageDto postVideo(String extension);
+    <T> ImageDto postImage(T image);
 
-    ImageDto post();
+    <T> ImageDto postImage(T image, String name, String title, String description);
 
-    ImageDto post(String image);
+    Boolean delete(String deleteHash);
 
-    ImageDto post(byte [] bytes);
 }

@@ -1,7 +1,0 @@
-3/account/{{username}}
-account/v1/{{username}}/block
-3/account/me/block
-3/account/me/images
-3/account/{{username}}/gallery_favorites
-3/account/{{username}}/gallery_favorites/2
-3/account/{{username}}/gallery_favorites/2/oldest

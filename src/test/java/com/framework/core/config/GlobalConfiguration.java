@@ -4,10 +4,12 @@ import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
 
 @Getter
 @Configuration
 @PropertySource("classpath:config.properties")
+@Component
 public class GlobalConfiguration {
 
     @Value("${app.token.uri}")
