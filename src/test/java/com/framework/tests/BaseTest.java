@@ -1,6 +1,5 @@
 package com.framework.tests;
 
-
 import com.framework.core.config.SpringTestConfiguration;
 import com.framework.core.service.ImageService;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,4 +13,5 @@ public class BaseTest {
 
     @Autowired
     ImageService imageService;
+
 }

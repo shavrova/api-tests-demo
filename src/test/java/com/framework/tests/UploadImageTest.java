@@ -1,7 +1,6 @@
 package com.framework.tests;
 
 import com.framework.core.utils.FileUtil;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -10,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DisplayName("Verify image is uploaded")
-@Slf4j
 @Tag("API")
 public class UploadImageTest extends BaseTest {
 

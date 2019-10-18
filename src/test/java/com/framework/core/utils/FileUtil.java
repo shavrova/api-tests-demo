@@ -6,7 +6,6 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -35,7 +34,6 @@ public class FileUtil {
         }
 
     }
-    //http://www.quintic.com/software/sample_videos/Cricket%20Bowling%20-%20Footwork%20400fps.avi
 
     public static void downloadFile(){
         try {

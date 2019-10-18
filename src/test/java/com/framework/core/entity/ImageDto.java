@@ -3,10 +3,8 @@ package com.framework.core.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.Map;
 
@@ -14,7 +12,6 @@ import java.util.Map;
 @ToString
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Component
-@NoArgsConstructor
 public class ImageDto {
     private String id;
     private String title;
@@ -24,12 +21,6 @@ public class ImageDto {
     private String link;
     private int size;
     private String deleteHash;
-
-    private HttpClientErrorException exception;
-
-    public ImageDto(HttpClientErrorException exception) {
-        this.exception = exception;
-    }
 
     @SuppressWarnings("unchecked")
     @JsonProperty(value = "data")
