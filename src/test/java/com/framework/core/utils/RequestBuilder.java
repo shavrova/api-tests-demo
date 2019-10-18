@@ -74,7 +74,6 @@ public class RequestBuilder {
         resourceDetails.setUsername(username);
         resourceDetails.setPassword(password);
 
-        System.out.println("PASSWORD: " + password);
         return new OAuth2RestTemplate(resourceDetails).getAccessToken().getValue();
     }
 
